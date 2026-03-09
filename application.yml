@@ -1,0 +1,21 @@
+server:
+  port: 8080
+#  address: 0.0.0.0  # 允许所有IP访问
+
+# ?????
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/bs-xm?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
+
+# 修改：将 mybatis: 改为 mybatis-plus:
+mybatis-plus:
+  ## 扫描xml
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    #打印sql（调试用）
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #开启驼峰命名映射（数据库下划线字段转Java驼峰属性）
+    map-underscore-to-camel-case: true

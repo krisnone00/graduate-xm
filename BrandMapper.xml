@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.BrandMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.entity.Brand">
+        <id column="id" property="id" />
+        <result column="brand_code" property="brandCode" />
+        <result column="brand_name" property="brandName" />
+        <result column="brand_logo" property="brandLogo" />
+        <result column="description" property="description" />
+        <result column="is_enabled" property="isEnabled" />
+        <result column="created_time" property="createdTime" />
+        <result column="updated_time" property="updatedTime" />
+    </resultMap>
+
+    <select id="countByCode" resultType="int">
+        SELECT COUNT(*) FROM brand WHERE brand_code = #{code}
+    </select>
+
+</mapper>

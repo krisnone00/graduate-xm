@@ -1,0 +1,287 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+}
+/* ❌ 原来的（在Vue组件中不生效） */
+/*body {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    min-height: 100vh;*/
+/*    background: #111;*/
+/*    width: 100%;*/
+/*    overflow: hidden;*/
+/*}*/
+/* 把 body 改成 .login-container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.ring {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 确保登录框在视频上面 */
+    z-index: 2;
+}
+.ring i {
+    position: absolute;
+    inset: 0;
+    border: 2px solid #fff;
+    transition: 0.5s;
+}
+.ring i:nth-child(1) {
+    border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+    animation: animate 6s linear infinite;
+}
+.ring i:nth-child(2) {
+    border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
+    animation: animate 4s linear infinite;
+}
+.ring i:nth-child(3) {
+    border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
+    animation: animate2 10s linear infinite;
+}
+.ring:hover i {
+    border: 6px solid var(--clr);
+    filter: drop-shadow(0 0 20px var(--clr));
+}
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes animate2 {
+    0% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+.login {
+    position: absolute;
+    width: 300px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+.login h2 {
+    font-size: 2em;
+    /*font-size: 15px;*/
+    color: #fff;
+}
+.login .inputBx {
+    position: relative;
+    width: 100%;
+    margin-bottom: 5px;  /*  自己额外加的 紧凑一些 */
+}
+.login .inputBx input {
+    position: relative;
+    width: 100%;
+    padding: 12px 20px;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 40px;
+    font-size: 1.2em;
+    color: #fff;
+    box-shadow: none;
+    outline: none;
+}
+
+/* 输入框聚焦时的样式 */
+.login .inputBx input:focus {
+    border-color: #b1c2f6; /* 改变边框颜色 */
+    box-shadow: 0 0 10px rgb(0, 4, 131); /* 添加发光效果 */
+}
+
+.login .inputBx select {
+    /* 自己额外加的 下拉框样式 */
+    position: relative;
+    width: 100%;
+    padding: 12px 20px;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 40px;
+    font-size: 1.2em;
+    color: #fff;
+    box-shadow: none;
+    outline: none;
+}
+.login .inputBx input[type="submit"] {
+    width: 100%;
+    background: #0078ff;
+    background: linear-gradient(45deg, #ff357a, #fff172);
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.login .inputBx input::placeholder {
+    color: rgba(255, 255, 255, 0.75);
+}
+/*.login .links {*/
+/*    position: relative;*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+/*    padding: 0 20px;*/
+/*}*/
+/* 修改注册链接位置 - 移动到右下方 */
+.login .links {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* 改为右对齐 */
+    padding: 0 20px;
+    margin-top: -10px; /* 添加一点上边距 */
+}
+.login .links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* 错误提示 - 绝对定位，不撑开布局 */
+.error-msg {
+    position: absolute;
+    bottom: -22px; /* 显示在输入框下方 */
+    left: 20px;
+    color: rgb(39, 110, 93);
+    font-size: 13px;
+    font-weight: 500;
+    text-shadow: 0 0 5px rgba(255, 71, 87, 0.5);
+    animation: fadeIn 0.3s;
+    pointer-events: none; /* 防止干扰交互 */
+    white-space: nowrap; /* 防止文字换行 */
+}
+
+
+/* 自定义透明下拉框样式 */
+.custom-dropdown {
+    position: relative;
+}
+
+/* 下拉触发按钮 */
+.dropdown-trigger {
+    position: relative;
+    width: 100%;
+    padding: 12px 20px;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 40px;
+    font-size: 1.2em;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+/* 下拉框打开时的样式 */
+.dropdown-trigger.dropdown-open {
+    border-color: #b1c2f6;
+    box-shadow: 0 0 10px rgb(0, 4, 131);
+}
+
+/* 下拉箭头 */
+.dropdown-arrow {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.dropdown-open .dropdown-arrow {
+    transform: rotate(180deg);
+    color: #b1c2f6;
+}
+
+/* 透明下拉菜单 */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 5px;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease;
+}
+
+/* 下拉菜单项 */
+.dropdown-item {
+    padding: 12px 20px;
+    color: #fff;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 最后一项没有下边框 */
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+/* 下拉菜单项悬停效果 */
+.dropdown-item:hover {
+    background: rgba(177, 194, 246, 0.2);
+    color: #b1c2f6;
+}
+
+/* 选中状态 */
+.dropdown-item.selected {
+    background: rgba(177, 194, 246, 0.15);
+    color: #b1c2f6;
+    font-weight: bold;
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 确保登录按钮样式不变 */
+.inputBx input[type="submit"] {
+    width: 100%;
+    background: linear-gradient(45deg, #ff357a, #fff172);
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+
+
+
